@@ -50,12 +50,12 @@ function Container() {
   const modifyValue = (x: typeof data[0], mode: string) => {
     switch (mode) {
       case "add": if (selected != undefined) {
-        let arr: any = [...selected];
+        const arr: any = [...selected];
         arr.push(x);
         setSelected(arr);
       }
       else {
-        let arr: any = [x];
+        const arr: any = [x];
         setSelected(arr);
       }
         break;

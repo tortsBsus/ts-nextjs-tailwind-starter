@@ -39,7 +39,7 @@ function CustomSelect({ value, onModify, options }: SelectProps) {
   useEffect(() => {
 
     if (value != undefined) {
-      let emails: string[] = [];
+      const emails: string[] = [];
       for (let val of value) {
         emails.push(val.email);
       }
@@ -64,7 +64,7 @@ function CustomSelect({ value, onModify, options }: SelectProps) {
 
   const handleBackspace = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.currentTarget.value == '' && event.key === 'Backspace') {
-      let arr: any = value;
+      const arr: any = value;
       if (backspaceCount == 1) { onModify(arr.pop(), "remove"); setBackspaceCount(0); }
       setBackspaceCount(1);
     }
@@ -72,7 +72,7 @@ function CustomSelect({ value, onModify, options }: SelectProps) {
       setBackspaceCount(0);
     }
   }
-  useEffect(() => { }, [backspaceCount])
+  useEffect(() => { console.log() }, [backspaceCount])
 
   return (
     <>
@@ -92,8 +92,8 @@ function CustomSelect({ value, onModify, options }: SelectProps) {
                 />
               </>)
             }
-            {value.slice(value.length - 1).map((val) => (backspaceCount == 0) ? (<>    <Badge option={val} onExit={onModify} />  </>) :
-              (<div className='ring-2 rounded-full'>  <Badge option={val} onExit={onModify} /> </div>))
+            {value.slice(value.length - 1).map((val) => (backspaceCount == 0) ? (<div key={val.email}>    <Badge option={val} onExit={onModify} />  </div>) :
+              (<div className='ring-2 rounded-full' key={val.email}>  <Badge option={val} onExit={onModify} /> </div>))
             }
           </div>
 
